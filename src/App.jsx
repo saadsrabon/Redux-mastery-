@@ -1,7 +1,8 @@
 
 import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
-import { addbooking, inputchange } from './redux/booking/actionCreator'
+import { addbooking, inputchange ,deletebooking} from './redux/booking/actionCreator'
+
 
 function App() {
  const dispatch =useDispatch()
@@ -120,7 +121,7 @@ const handleBooking = (e) => {
         </thead>
         <tbody className="divide-y divide-gray-300/20" id="lws-previewBooked">
          {
-          bookings.map((booking,index)=>
+          bookings?.map((booking,index)=>
           (
             <tr key={index} className="lws-bookedTable text-black">
             <td className="px-6 py-4">
@@ -142,7 +143,7 @@ const handleBooking = (e) => {
             </td>
             <td className="px-6 py-4 text-center">
               <div className="flex justify-center gap-4">
-                <button className="lws-remove">
+                <button onClick={()=>dispatch(deletebooking(booking.id))} className="lws-remove">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                     stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
